@@ -1,0 +1,11 @@
+*__pycache__*
+*ipynb_checkpoints*
+*.ipynb
+*.out
+*lightning_logs*
+*.log
+*.csv
+*.json
+*.yaml
+*.yml
+*.txt
