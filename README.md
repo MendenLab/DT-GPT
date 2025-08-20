@@ -115,12 +115,13 @@ Due to license restrictions, each dataset needs to be accessed from the respecti
 
 If you use this code, please cite our paper:
 ```bibtex
-@article{dt-gpt-2024,
-  title={Large Language Models forecast Patient Health Trajectories enabling Digital Twins},
-  author={[Authors]},
+@article{makarov2024large,
+  title={Large language models forecast patient health trajectories enabling digital twins},
+  author={Makarov, Nikita and Bordukova, Maria and Rodriguez-Esteban, Raul and Schmich, Fabian and Menden, Michael P},
   journal={medRxiv},
+  pages={2024--07},
   year={2024},
-  url={https://www.medrxiv.org/content/10.1101/2024.07.05.24309957v2}
+  publisher={Cold Spring Harbor Laboratory Press}
 }
 ```
 
