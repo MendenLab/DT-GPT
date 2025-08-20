@@ -24,8 +24,7 @@ from darts.models import LightGBMModel
 from darts.models import LinearRegressionModel
 
 
-# TODO: DEBUG!!!!!!!!!!!!!
-WANDB_DEBUG_MODE = True
+WANDB_DEBUG_MODE = False
 
 
 
@@ -440,12 +439,6 @@ def main():
     test_full_paths, test_full_patientids = eval_manager.get_paths_to_events_in_split(test_set)
 
 
-    # TODO: DEBUG!!!!!!!!!
-    training_full_patientids = training_full_patientids[:10]
-    validation_full_patientids = validation_full_patientids[:10]
-    test_full_patientids = test_full_patientids[:10]
-
-
     # Load data
     training_full_constants, training_full_events = eval_manager.load_list_of_patient_dfs_and_constants(training_full_patientids)
     validation_full_constants, validation_full_events = eval_manager.load_list_of_patient_dfs_and_constants(validation_full_patientids)
@@ -664,7 +657,7 @@ def main():
 
     ##################################################### Run actual models ###########################################################
     
-    # TODO: Transformer
+    #: Transformer
     curr_wandb_name = "Transformer - CM - Full Validation & Training - Forecast: " + str(NR_DAYS_FORECAST) + " Lookback: " + str(MAX_LOOKBACK_WINDOW)
     run_and_eval_model(setup_model_transformer, curr_wandb_name, "Transformer - Full", {
         "gradient_cliping": 1,
@@ -672,7 +665,7 @@ def main():
         "max_nr_epochs": 100,
     })
 
-    # TODO: RNN
+    #: RNN
     curr_wandb_name = "RNN - CM - Full Validation & Training - Forecast: " + str(NR_DAYS_FORECAST) + " Lookback: " + str(MAX_LOOKBACK_WINDOW)
     run_and_eval_model(setup_model_rnn, curr_wandb_name, "RNN - Full", {
         "gradient_cliping": 1,
@@ -680,18 +673,13 @@ def main():
         "max_nr_epochs": 100,
     })
 
-    # TODO: LSTM
+    #: LSTM
     curr_wandb_name = "LSTM - CM - Full Validation & Training - Forecast: " + str(NR_DAYS_FORECAST) + " Lookback: " + str(MAX_LOOKBACK_WINDOW)
     run_and_eval_model(setup_model_lstm, curr_wandb_name, "LSTM - Full", {
         "gradient_cliping": 1,
         "early_stopping_patients" : 3,
         "max_nr_epochs": 100,
     })
-
-
-    # For now only running the new models!
-    return
-
 
 
     # LightGBM

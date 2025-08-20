@@ -107,6 +107,10 @@ The codebase supports multiple healthcare datasets:
 - **MIMIC-IV**: Publicly available critical care database
 - **ADNI**: Alzheimer's disease progression data
 
+## Data
+
+Due to license restrictions, each dataset needs to be accessed from the respective organisation. In case of any specific data preprocessing questions, please reach out to [nikita.makarov@roche.com](nikita.makarov@roche.com).
+
 ## Citation
 
 If you use this code, please cite our paper:
