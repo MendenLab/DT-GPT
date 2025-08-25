@@ -7,6 +7,10 @@ Code to run the experiments for the paper ["Large Language Models forecast Patie
 
 This repository contains the implementation of DT-GPT (Digital Twin GPT), a framework for using Large Language Models to forecast patient health trajectories. The codebase is organized into three main components: pipeline infrastructure, experimental runs, and exploratory analyses.
 
+Developed as a collaboration project by Roche, Helmholtz Munich & LMU.
+
+In case of any questions, please reach out to [Nikita Makarov](nikita.makarov@roche.com) or [Michael Menden](michael.menden@unimelb.edu.au).
+
 ## Repository Structure
 
 ### 📁 `1_pipeline/` - Core Infrastructure
