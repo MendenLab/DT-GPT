@@ -3,6 +3,8 @@
 
 Code to run the experiments for the paper ["Large Language Models forecast Patient Health Trajectories enabling Digital Twins"](https://www.medrxiv.org/content/10.1101/2024.07.05.24309957v2).
 
+> **_NOTE:_** We are working on a Python library that will enable easier conversions that is indication agnostic.
+
 ## Overview
 
 This repository contains the implementation of DT-GPT (Digital Twin GPT), a framework for using Large Language Models to forecast patient health trajectories. The codebase is organized into three main components: pipeline infrastructure, experimental runs, and exploratory analyses.

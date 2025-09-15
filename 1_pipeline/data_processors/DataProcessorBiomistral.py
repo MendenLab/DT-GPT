@@ -6,7 +6,6 @@ import json
 import numpy as np
 from transformers import AutoTokenizer, LongT5Model, DataCollatorForSeq2Seq, T5Tokenizer, DataCollatorForLanguageModeling
 from datasets import Dataset
-from DataFrameConvertJSONLlama import DTGPTDataFrameConverterLlama_1_0
 import re
 from trl import DataCollatorForCompletionOnlyLM
 
@@ -42,8 +41,6 @@ class DataProcessorBiomistral():
         self.collator_setting = collator_setting
         self.response_template = "<patient_prediction>"
         self.data_collator = None
-
-        self.current_converter = DTGPTDataFrameConverterLlama_1_0
 
         # Load statistics file
         with open(path_to_statistics_file) as f:
@@ -151,6 +148,7 @@ class DataProcessorBiomistral():
         
         assert generated_trajectories_df_path is None
         assert index_version is False
+        assert self.current_converter is not None, "DataProcessor: Converter not set up correctly"
 
         str_input, str_output, meta_data = self.current_converter.convert_df_to_strings(self.column_name_mapping, 
                                                                                         constants_row, true_events_input, true_future_events_input, target_dataframe,
