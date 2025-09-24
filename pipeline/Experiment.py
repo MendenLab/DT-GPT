@@ -16,6 +16,7 @@ import os
 from IPython.display import display
 from transformers import set_seed, DataCollatorWithPadding
 from pipeline.ArchivedFunctions import OldExperiment
+import warnings
 
 
 class Experiment:
@@ -50,7 +51,7 @@ class Experiment:
         self._setup_logging()
 
         # Some constants
-        self.base_path = os.path.dirname(__file__).split("/uc2_nsclc")[0] + "/uc2_nsclc/"  # Hacky way to get the base path
+        self.base_path = os.path.dirname(__file__).split("/DT-GPT")[0] + "/DT-GPT/"  # Hacky way to get the base path
         self.model_cache_path = self.base_path + "3_cache/"
 
 
@@ -333,10 +334,14 @@ class Experiment:
                                         note_down_probabilities=False,
                                         tokenizer=None,
                                         verbose=False):
+        
+        warnings.warn("Experiment: Using HF default evaluation - we recommend using a vLLM backend - see the ADNI example!")
+        warnings.warn("This is a very slow evaluation and should only be used for small datasets or debugging!")
+
 
         ############# Backwards compatibility #################
         if tokenizer is None:
-            logging.info("No tokenizer provided - using old version of evaluation which is much slower!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            warnings.warn("No tokenizer provided - using old version of evaluation which is much slower!")
 
             e = OldExperiment()
             e.model = self.model
@@ -350,15 +355,14 @@ class Experiment:
                                                     return_meta_data=return_meta_data,
                                                     note_down_probabilities=note_down_probabilities)
 
-            logging.info("No tokenizer provided - using old version of evaluation which is much slower!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            warnings.warn("No tokenizer provided - using old version of evaluation which is much slower!")
             return t
 
         ############# Inference set up     #############
         assert self.model is not None, "Model needs to be initialized for HF eval!"
         set_seed(42)
 
-
-         # Using standard model forward - as long as the model fits into 1 gpu its fine
+        # Using standard model forward - as long as the model fits into 1 gpu its fine
 
         # Send model to gpu
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -11,7 +11,7 @@ Code to run the experiments for the paper ["Large Language Models forecast Patie
 
 ```python
 # First install a fresh environment
-cd dt-gpt
+cd DT-GPT
 pip install -r requirements.txt
 pip install -e .
 ```

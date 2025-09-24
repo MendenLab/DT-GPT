@@ -18,7 +18,7 @@ from IPython.display import display
 from transformers import set_seed, DataCollatorWithPadding
 import plotnine
 import matplotlib
-
+import warnings
 
 
 
@@ -34,6 +34,8 @@ class OldExperiment():
                                         output_string_filtering_function=None,
                                         return_meta_data=False,
                                         note_down_probabilities=False):
+        
+        warnings.warn("This function is deprecated - we recommend using a vLLM backend for faster generation, see the ADNI approach!")
     
         assert self.model is not None, "Model needs to be initialized for HF eval!"
         set_seed(42)

@@ -11,33 +11,33 @@ import os
 
 class EvaluationManager:
 
-    def __init__(self, dataset_name, load_statistics_file=True):
+    def __init__(self, dataset_name, load_statistics_file=True, base_path=None):
         
         # Public variables
         self.dataset_name = dataset_name
         
-        # Private variables
-        
-
         # Dictionary with all available datasets
-        self.base_path = os.path.dirname(__file__).split("/uc2_nsclc")[0] + "/uc2_nsclc/"  # Hacky way to get the base path
+        if base_path is not None:
+            self.base_path = base_path
+        else:
+            self.base_path = os.path.dirname(__file__).split("/DT-GPT")[0] + "/DT-GPT/"  # Hacky way to get the base path
 
         self._datasets_available = {
             "2023_11_07_neutrophils" : {
-                "path_constant": self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/constant.csv",
-                "path_to_events_folder" : self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/patient_events/",
-                "path_to_column_mapping_file": self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/column_mapping.json",
+                "path_constant": self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/constant.csv",
+                "path_to_events_folder" : self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/patient_events/",
+                "path_to_column_mapping_file": self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/column_mapping.json",
                 "path_to_dataset_cache": self.base_path + "3_cache",
                 "patientid_splits":{
-                    "2023_11_08_1k_train": self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/patient_subsets/2023_11_08_1k_train.json",  
-                    "2023_11_08_100_validation": self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/patient_subsets/2023_11_08_100_validation.json",  
-                    "2023_11_08_100_test": self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/patient_subsets/2023_11_08_100_test.json", 
+                    "2023_11_08_1k_train": self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/patient_subsets/2023_11_08_1k_train.json",  
+                    "2023_11_08_100_validation": self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/patient_subsets/2023_11_08_100_validation.json",  
+                    "2023_11_08_100_test": self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/patient_subsets/2023_11_08_100_test.json", 
                 },
                 "TRAIN": {
                     "input_output_splitting": None,
                     "skip_patient_event_dataset_cache" : True,
                     "path_to_majority_row": "",
-                    "path_to_statistics_json": self.base_path + "2_experiments/2023_11_07_neutrophils/1_data/dataset_statistics.json",
+                    "path_to_statistics_json": self.base_path + "1_experiments/2023_11_07_neutrophils/1_data/dataset_statistics.json",
                 },
                 "VALIDATION": {
                     "input_output_splitting": "",
@@ -51,26 +51,26 @@ class EvaluationManager:
                 }
             },
             "2024_02_05_critical_vars" : {
-                "path_constant": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/constant.csv",
-                "path_to_events_folder" : self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_events/",
-                "path_to_column_mapping_file": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/column_mapping.json",
+                "path_constant": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/constant.csv",
+                "path_to_events_folder" : self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_events/",
+                "path_to_column_mapping_file": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/column_mapping.json",
                 "path_to_dataset_cache": self.base_path + "3_cache",
                 "patientid_splits":{
-                    "2023_11_08_1k_train": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2023_11_08_1k_train.json",  
-                    "2023_11_08_100_validation": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2023_11_08_100_validation.json",  
-                    "2023_11_08_100_test": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2023_11_08_100_test.json", 
-                    "2024_06_17_randomized_1_train": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_1_training.json",
-                    "2024_06_17_randomized_1_validation": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_1_validation.json",
-                    "2024_06_17_randomized_1_test": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_1_test.json",
-                    "2024_06_17_randomized_2_train": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_2_training.json",
-                    "2024_06_17_randomized_2_validation": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_2_validation.json",
-                    "2024_06_17_randomized_2_test": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_2_test.json",
+                    "2023_11_08_1k_train": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2023_11_08_1k_train.json",  
+                    "2023_11_08_100_validation": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2023_11_08_100_validation.json",  
+                    "2023_11_08_100_test": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2023_11_08_100_test.json", 
+                    "2024_06_17_randomized_1_train": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_1_training.json",
+                    "2024_06_17_randomized_1_validation": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_1_validation.json",
+                    "2024_06_17_randomized_1_test": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_1_test.json",
+                    "2024_06_17_randomized_2_train": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_2_training.json",
+                    "2024_06_17_randomized_2_validation": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_2_validation.json",
+                    "2024_06_17_randomized_2_test": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/patient_subsets/2024_06_17_randomized_2_test.json",
                 },
                 "TRAIN": {
                     "input_output_splitting": None,
                     "skip_patient_event_dataset_cache" : True,
                     "path_to_majority_row": "",
-                    "path_to_statistics_json": self.base_path + "2_experiments/2024_02_05_critical_vars/1_data/dataset_statistics.json",
+                    "path_to_statistics_json": self.base_path + "1_experiments/2024_02_05_critical_vars/1_data/dataset_statistics.json",
                 },
                 "VALIDATION": {
                     "input_output_splitting": "",
@@ -85,26 +85,26 @@ class EvaluationManager:
             },
 
             "2024_03_15_mimic_iv" : {
-                "path_constant": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/constants.csv",
-                "path_to_events_folder" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/events/",
-                "path_to_column_mapping_file": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/column_mapping.json",
+                "path_constant": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/constants.csv",
+                "path_to_events_folder" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/events/",
+                "path_to_column_mapping_file": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/column_mapping.json",
                 "path_to_dataset_cache": self.base_path + "3_cache",
                 "patientid_splits": {
-                    "2024_03_15_1k_train" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_03_15_1k_train.json",
-                    "2024_03_15_100_validation" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_03_15_100_validation.json",
-                    "2024_03_15_100_test": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_03_15_100_test.json",
-                    "2024_06_17_randomized_1_train" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_1_training.json",
-                    "2024_06_17_randomized_1_validation" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_1_validation.json",
-                    "2024_06_17_randomized_1_test": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_1_test.json",
-                    "2024_06_17_randomized_2_train" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_2_training.json",
-                    "2024_06_17_randomized_2_validation" : self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_2_validation.json",
-                    "2024_06_17_randomized_2_test": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_2_test.json",
+                    "2024_03_15_1k_train" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_03_15_1k_train.json",
+                    "2024_03_15_100_validation" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_03_15_100_validation.json",
+                    "2024_03_15_100_test": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_03_15_100_test.json",
+                    "2024_06_17_randomized_1_train" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_1_training.json",
+                    "2024_06_17_randomized_1_validation" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_1_validation.json",
+                    "2024_06_17_randomized_1_test": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_1_test.json",
+                    "2024_06_17_randomized_2_train" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_2_training.json",
+                    "2024_06_17_randomized_2_validation" : self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_2_validation.json",
+                    "2024_06_17_randomized_2_test": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/patient_subsets/2024_06_17_randomized_2_test.json",
                 },
                 "TRAIN": {
                     "input_output_splitting": None,
                     "skip_patient_event_dataset_cache" : True,
                     "path_to_majority_row": "",
-                    "path_to_statistics_json": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/dataset_statistics.json",
+                    "path_to_statistics_json": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/dataset_statistics.json",
                 },
                 "VALIDATION": {
                     "input_output_splitting": "",
@@ -120,9 +120,9 @@ class EvaluationManager:
 
 
              "2025_02_03_adni" : {
-                "path_constant": self.base_path + "2_experiments/2025_02_03_adni/1_data/1_final_data/constant.csv",
-                "path_to_events_folder" : self.base_path + "2_experiments/2025_02_03_adni/1_data/1_final_data/patient_events/",
-                "path_to_column_mapping_file": self.base_path + "2_experiments/2025_02_03_adni/1_data/1_final_data/column_mapping.json",  
+                "path_constant": self.base_path + "1_experiments/2025_02_03_adni/1_data/1_final_data/constant.csv",
+                "path_to_events_folder" : self.base_path + "1_experiments/2025_02_03_adni/1_data/1_final_data/patient_events/",
+                "path_to_column_mapping_file": self.base_path + "1_experiments/2025_02_03_adni/1_data/1_final_data/column_mapping.json",  
                 "path_to_dataset_cache": self.base_path + "3_cache",
                 "patientid_splits": {
                 },
@@ -130,7 +130,7 @@ class EvaluationManager:
                     "input_output_splitting": None,
                     "skip_patient_event_dataset_cache" : True,
                     "path_to_majority_row": "",
-                    "path_to_statistics_json": self.base_path + "2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/dataset_statistics.json", # TODO
+                    "path_to_statistics_json": self.base_path + "1_experiments/2024_02_08_mimic_iv/1_data/0_final_data/dataset_statistics.json", # TODO
                 },
                 "TEST": {
                     "input_output_splitting": "",
