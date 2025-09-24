@@ -11,7 +11,7 @@ import torch
 from plotnine import *
 import matplotlib.pyplot
 matplotlib.pyplot.set_loglevel("error")
-import DartsHelpers
+import pipeline.DartsHelpers as DartsHelpers
 import NeuralForecastHelpers
 import math
 from darts.models import TFTModel

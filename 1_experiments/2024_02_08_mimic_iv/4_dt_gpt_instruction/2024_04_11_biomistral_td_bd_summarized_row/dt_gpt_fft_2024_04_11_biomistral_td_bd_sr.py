@@ -4,9 +4,9 @@ from pipeline.Experiment import Experiment
 import wandb
 import pandas as pd
 import logging
-from pipeline.DataFrameConvertTDBDMIMIC import DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC
+from pipeline.data_generators.DataFrameConvertTDBDMIMIC import DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC
 from pipeline.DFConversionHelpers import process_all_tuples_multiprocessing
-from pipeline.DataProcessorBiomistral import DataProcessorBiomistral
+from pipeline.data_processors.DataProcessorBiomistral import DataProcessorBiomistral
 from pipeline.NormalizationFilterManager import Only_Double3_sigma_Filtering
 import torch
 from transformers import AutoModelForCausalLM

@@ -7,7 +7,7 @@ import logging
 import torch
 import matplotlib.pyplot
 matplotlib.pyplot.set_loglevel("error")
-import DartsHelpers
+import pipeline.DartsHelpers as DartsHelpers
 from darts.models import TFTModel
 from pytorch_lightning.callbacks import EarlyStopping
 import json

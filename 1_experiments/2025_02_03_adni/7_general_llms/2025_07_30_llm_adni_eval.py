@@ -16,7 +16,7 @@ import wandb
 from pipeline.EvaluationManager import EvaluationManager
 from pipeline.Splitters import After24HSplitter
 import logging
-from pipeline.DataFrameConvertTDBDMIMIC import DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC
+from pipeline.data_generators.DataFrameConvertTDBDMIMIC import DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC
 from pipeline.DFConversionHelpers import process_all_tuples_multiprocessing, process_all_tuples
 from pipeline.NormalizationFilterManager import Only_Double3_sigma_Filtering
 import json

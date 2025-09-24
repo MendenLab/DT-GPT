@@ -5,9 +5,9 @@ import wandb
 import pandas as pd
 from pipeline.Splitters import LoTSplitNDays
 import logging
-from pipeline.DataFrameConvertTemplateTextBasicDescription import DTGPTDataFrameConverterTemplateTextBasicDescription
+from pipeline.data_generators.DataFrameConvertTemplateTextBasicDescription import DTGPTDataFrameConverterTemplateTextBasicDescription
 from pipeline.DFConversionHelpers import process_all_tuples_multiprocessing
-from pipeline.DataProcessorBiomistral import DataProcessorBiomistral
+from pipeline.data_processors.DataProcessorBiomistral import DataProcessorBiomistral
 from pipeline.NormalizationFilterManager import Only_Double3_sigma_Filtering
 import torch
 from transformers import AutoModelForCausalLM
