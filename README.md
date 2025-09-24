@@ -131,6 +131,33 @@ Due to license restrictions, each dataset needs to be accessed from the respecti
 
 The data preprocessing scripts are located in their respective dataset folders under `1_data`, with each indication having its own README. Please note, that you will need to adjust the paths in the scripts to your specific system setup.
 
+
+
+### Example processed input and output on synthetic patient
+
+This is the final processed text version for DT-GPT on a synthetic patient, in the NSCLC set up.
+
+Input:
+```
+First, patient chronological patient history up until the current day. Patient visits for the first time, with the following values: Hyperlipidemia, unspecified is diagnosed, Essential (primary) hypertension is diagnosed, ECOG is 1, <...>.
+135 days after previous visit, patient visits again, with the following values: ECOG is 1, neutrophils.segmented is 2.8, <...>.
+17 days after previous visit, patient visits again, with the following values: ECOG is 1, alanine aminotransferase is 6, <...>.
+7 days after previous visit, <...>.
+
+<...>
+
+Next, the baseline data for the patient:  birth year is 1953, gender is M, ses index is 3, is cancer advanced is True, histology is Non-squamous cell carcinoma, cancer stage is Stage IV, smoking status is History of smoking, ethnicity is Not Hispanic or Latino, Current line of therapy is Pembrolizumab, Current line number is 2.
+Finally, the variables which you should predict, and for which days in the future from the current day: {"hemoglobin": [21, 42, 63, 70, 77, 84]}
+Now, your task is as follows: Given the non small cell lung cancer patient's history, please predict for this patient the previously noted down variables and future days, in the same JSON format. <patient_prediction>
+```
+
+Output:
+```
+{"hemoglobin": ["10.8", "11.3", "11.2", "11.6", "11.7", "11.7"]}
+```
+
+
+
 ## Citation
 
 If you use this code, please cite our paper:
