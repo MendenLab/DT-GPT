@@ -337,7 +337,7 @@ class Experiment:
         
         warnings.warn("Experiment: Using HF default evaluation - we recommend using a vLLM backend - see the ADNI example!")
         warnings.warn("This is a very slow evaluation and should only be used for small datasets or debugging!")
-
+        # This function should be refactored, including to use a vLLM backend for speed
 
         ############# Backwards compatibility #################
         if tokenizer is None:
