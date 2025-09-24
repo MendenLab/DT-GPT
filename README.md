@@ -3,7 +3,14 @@
 
 Code to run the experiments for the paper ["Large Language Models forecast Patient Health Trajectories enabling Digital Twins"](https://www.medrxiv.org/content/10.1101/2024.07.05.24309957v2).
 
-> **_NOTE:_** We are working on a Python library that will enable easier conversions that is indication agnostic.
+> **_❗NOTE:_** We are working on a Python library that will enable easier conversions, that is both indication agnostic and generally better engineered. This repo is more towards exploratory experiments, often with dead ends and potentially redundant code. Please raise an issue if something is missing or unclear.
+
+
+## Installation
+
+TODO!
+
+
 
 ## Overview
 
@@ -15,7 +22,7 @@ In case of any questions, please reach out to [Nikita Makarov](nikita.makarov@ro
 
 ## Repository Structure
 
-### 📁 `1_pipeline/` - Core Infrastructure
+### 📁 `pipeline/` - Core Infrastructure
 Contains the main pipeline components and utilities for running experiments:
 
 - **`Experiment.py`** - Main experiment orchestration class
@@ -38,7 +45,7 @@ Contains the main pipeline components and utilities for running experiments:
 #### 📁 `data_processors/`
 - **`DataProcessorBiomistral.py`** - BioMistral model-specific data processing
 
-### 📁 `2_experiments/` - Main Experimental Results
+### 📁 `1_experiments/` - Main Experimental Results
 
 #### 📁 `2024_02_05_critical_vars/` - Critical Variables Dataset Experiments
 Experiments on the critical care variables dataset:
@@ -62,7 +69,7 @@ Alzheimer's Disease Neuroimaging Initiative dataset experiments:
 - **`6_llmtime/`** - LLMTime experiments
 - **`7_general_llms/`** - General LLM experiments
 
-### 📁 `3_various_explorations/` - Exploratory Analyses
+### 📁 `2_various_explorations/` - Exploratory Analyses
 
 #### 📁 `zero_shot/`
 Zero-shot forecasting experiments:
@@ -101,9 +108,9 @@ The primary DT-GPT experiments can be found in the following folders:
 The framework implements several forecasting approaches:
 
 1. **Baseline Models**: Copy-forward and simple statistical baselines
-2. **Traditional Time Series Models**: Using Darts library (ARIMA, Prophet, Neural networks)
+2. **Traditional Time Series Models**: Using Darts library (Linear model, LSTM, TiDE, ...)
 3. **Specialized Time Series LLMs**: Time-LLM and LLMTime
-4. **General Purpose LLMs**: GPT models, BioMistral, and other language models
+4. **General Purpose LLMs**: BioMistral
 5. **DT-GPT**: Our instruction-based approach for patient trajectory forecasting
 
 ## Dataset Support
@@ -115,7 +122,7 @@ The codebase supports multiple healthcare datasets:
 
 ## Data
 
-Due to license restrictions, each dataset needs to be accessed from the respective organisation. In case of any specific data preprocessing questions, please reach out to [nikita.makarov@roche.com](nikita.makarov@roche.com).
+Due to license restrictions, each dataset needs to be accessed from the respective organisation. In case of any specific data preprocessing questions, please reach out to [nikita.makarov@roche.com](nikita.makarov@roche.com) or [michael.menden@unimelb.edu.au](michael.menden@unimelb.edu.au).
 
 ## Citation
 

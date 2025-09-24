@@ -9,3 +9,5 @@
 *.yaml
 *.yml
 *.txt
+*.egg-info*
+

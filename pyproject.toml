@@ -1,0 +1,75 @@
+# prescient/pyproject.toml
+# Configuration file for building the 'dt-gpt pipeline' package.
+
+[build-system]
+# Specifies the build tools needed to create the package.
+# Setuptools is a common and robust choice.
+requires = ["setuptools>=61.0"] # Minimum version of setuptools required
+build-backend = "setuptools.build_meta" # Standard entry point for setuptools builds
+
+
+[project]
+# --- Core Package Metadata ---
+# This information describes your package for tools like pip and websites like PyPI.
+
+# The distribution name of your package.
+# This is the name used when you run 'pip install ...'. Dashes are conventional.
+name = "dt-gpt"
+
+# The current version of your package.
+# It's good practice to follow semantic versioning (e.g., MAJOR.MINOR.PATCH).
+# Remember to increment this when you make changes, especially non-backward-compatible ones.
+version = "0.1.0" # <-- UPDATE this as you release new versions
+
+# A short, one-sentence description of what your package does.
+description = "DT-GPT pipeline"
+
+# Optional: Path to a file containing the detailed description (usually your README).
+# This will be displayed on package indexes like PyPI.
+# readme = "README.md"
+
+# Optional: Specify which Python versions your package is compatible with.
+# requires-python = ">=3.8"
+
+# --- Runtime Dependencies ---
+# List all external Python packages that the code INSIDE your package source directory
+# (i.e., 'prescient/digital_twin/digital_twin_converter/') needs to function correctly.
+# Pip will automatically install these packages when someone installs 'dt-gpt pipeline'.
+dependencies = [
+    "numpy",        # Example: Add version specifiers if needed, e.g., "numpy>=1.20,<2.0"
+    "pandas",       # Example
+    # "torch",          # Uncomment and add if required
+    # "transformers",   # Uncomment and add if required
+    # "scikit-learn",
+    # "scipy",
+    # "requests",
+    # ... ADD ALL OTHER LIBRARIES YOUR PACKAGE CODE REQUIRES HERE ...
+    # Make sure the versions are compatible with each other and your code.
+]
+
+# Optional: You can define groups of extra dependencies for specific purposes.
+# For example, dependencies needed only for development or running tests.
+# Install these using: pip install .[dev] or pip install .[test]
+# [project.optional-dependencies]
+# dev = [
+#     "pytest",  # For running tests
+#     "ruff",    # For linting and formatting
+#     "black",   # For formatting
+# ]
+# test = [
+#     "pytest",
+#     "pytest-cov", # For checking test coverage
+# ]
+
+
+
+# --- Build System Configuration ---
+[tool.setuptools]
+# This section provides specific instructions for the setuptools build backend.
+
+# Tells setuptools how to find your actual Python package source code files.
+# We use the 'find' directive within an inline table for clarity and conciseness.
+packages = { find = { where = ["."], include = ["pipeline*"] } }
+
+
+# --- End of pyproject.toml ---
