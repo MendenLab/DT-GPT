@@ -73,10 +73,9 @@ def generate_column_mapping():
 def dataset_statistics_loader():
 
     print("Starting with dataset_statistics_loader")
-
-    import __init__
+    
     import pandas as pd
-    from EvaluationManager import EvaluationManager
+    from pipeline.EvaluationManager import EvaluationManager
     import numpy as np
     from pandas.api.types import is_numeric_dtype
     import time
