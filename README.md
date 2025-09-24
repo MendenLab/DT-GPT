@@ -135,7 +135,7 @@ The data preprocessing scripts are located in their respective dataset folders u
 
 ### Example processed input and output on synthetic patient
 
-This is the final processed text version for DT-GPT on a synthetic patient, in the NSCLC set up.
+This is the final processed text version for DT-GPT on a synthetic patient, in the NSCLC set up. Note, if you run this in vLLM, you need to use the completions enpoint (i.e. not using chat completions or chat templates). The ` <patient_prediction>` part is an essential input for the model.
 
 Input:
 ```
