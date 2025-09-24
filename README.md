@@ -127,7 +127,9 @@ The codebase supports multiple healthcare datasets:
 
 ## Data
 
-Due to license restrictions, each dataset needs to be accessed from the respective organisation. In case of any specific data preprocessing questions, please reach out to [nikita.makarov@roche.com](nikita.makarov@roche.com) or [michael.menden@unimelb.edu.au](michael.menden@unimelb.edu.au).
+Due to license restrictions, each dataset needs to be accessed from the respective organisation. In case of any specific data preprocessing questions that are not clear from the code, please reach out to [nikita.makarov@roche.com](nikita.makarov@roche.com) or [michael.menden@unimelb.edu.au](michael.menden@unimelb.edu.au). Additionally, we use the custom R library `FlatironTimeSeries` for preprocessing the Flatiron data, please reach out to us in case you need access to it.
+
+The data preprocessing scripts are located in their respective dataset folders under `1_data`, with each indication having its own README. Please note, that you will need to adjust the paths in the scripts to your specific system setup.
 
 ## Citation
 

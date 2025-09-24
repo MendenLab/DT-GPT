@@ -1,15 +1,8 @@
 library(ggplot2)
 
-
-library(remotes)
-
-config <- readLines("~/flatiron_exploration/gitlab")
-my_auth_token <- config[1]  # <----------------------------------- enter in your own Gitlab token
-remotes::install_gitlab('predrwd/resource/FlatironTimeSeries', auth_token = my_auth_token, host = "code.roche.com", force = TRUE,
-                        build_vignettes = TRUE)
-
-library(FlatironTimeSeries)   # This is a custom R library to process Flatiron data into a format suitable for ML
+# This is a custom R library to process Flatiron data into a format suitable for ML
 # Please reach out to us in case you need access to this library
+library(FlatironTimeSeries)   
 
 
 # 1. Connect to database
@@ -35,11 +28,6 @@ library(FlatironTimeSeries)   # This is a custom R library to process Flatiron d
 
 ##################################################### 1) DB CONNECTION #####################################################
 
-
-config <- readLines("~/flatiron_exploration/redshift")
-
-Sys.setenv(DB_USERNAME=config[1])
-Sys.setenv(DB_PASSWORD=config[2])
 
 
 db <- RocheData::get_data(data = "flatiron_se_ptcg")
