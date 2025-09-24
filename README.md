@@ -8,8 +8,13 @@ Code to run the experiments for the paper ["Large Language Models forecast Patie
 
 ## Installation
 
-TODO!
 
+```python
+# First install a fresh environment
+cd dt-gpt
+pip install -r requirements.txt
+pip install -e .
+```
 
 
 ## Overview
