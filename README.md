@@ -3,7 +3,7 @@
 
 Code to run the experiments for the paper ["Large Language Models forecast Patient Health Trajectories enabling Digital Twins"](https://www.medrxiv.org/content/10.1101/2024.07.05.24309957v2).
 
-> ❗**_NOTE:_** We are working on a Python library that will enable easier conversions, that is both indication agnostic and generally better engineered. This repo is more towards exploratory experiments, often with dead ends and potentially redundant code. Please raise an issue if something is missing or unclear.
+>❗ **NOTE:**  We are working on a Python library that will enable easier conversions, that is both indication agnostic and generally better engineered. This repo is more towards exploratory experiments, often with dead ends and potentially redundant code. Please raise an issue if something is missing or unclear.
 
 
 ## Installation
