@@ -52,7 +52,7 @@ def main():
         key_diagnoses: top_k_diagnoses,
     }
 
-    zero_to_na_mapping = [key_procedureevents, key_inputevents, key_outputevents, key_diagnoses]
+    zero_to_na_mapping = [key_procedureevents, key_inputevents, key_outputevents, key_diagnoses, key_labs]
 
     all_cols_to_keep_dynamic = []
     all_cols_to_keep_static = []
