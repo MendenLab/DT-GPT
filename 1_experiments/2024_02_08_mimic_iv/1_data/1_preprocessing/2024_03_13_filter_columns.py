@@ -20,7 +20,8 @@ def main():
     save_folder_path_constant = "/home/makaron1/uc2_nsclc/2_experiments/2024_02_08_mimic_iv/1_data/0_final_data"
 
     # get all files in the folder
-    files = os.listdir(load_folder_path)
+    files = [f for f in os.listdir(load_folder_path) if os.path.isdir(os.path.join(load_folder_path, f))]
+    files = sorted(files)
 
     #: open stats dic, and select which variables to keep
     with open('/home/makaron1/uc2_nsclc/2_experiments/2024_02_08_mimic_iv/1_data/1_preprocessing/2024_02_01_raw_data_stats.json') as f:
@@ -84,7 +85,6 @@ def main():
             all_cols_to_convert_zeros_to_na.extend(col_names)
 
 
-    all_links_to = Counter([stats[col]["linksto"] for col in stats])
     time_since_last_batch = time.time()
 
     #: make empty list for constant df 
@@ -92,10 +92,6 @@ def main():
 
     # go through every file
     for idx, file in enumerate(files):
-
-        # Skip if not folder
-        if not os.path.isdir(os.path.join(load_folder_path, file)):
-            continue
 
         if idx % 10 == 0:
             delta_time = time.time() - time_since_last_batch
@@ -118,13 +114,14 @@ def main():
                 df[column] = df[column].replace(0, np.nan)
 
         #: add ids to df
-        df.insert(0, "patientid", idx)
+        patientid = idx
+        df.insert(0, "patientid", patientid)
 
         #: add 48 hours to date as range of datetime objects
         df.insert(0, "date", list(pd.date_range(start='2024-01-01', periods=len(df), freq='H')))
 
         #: save df in folder
-        df.to_csv(os.path.join(save_folder_path, f"{idx}_events.csv"))
+        df.to_csv(os.path.join(save_folder_path, f"{patientid}_events.csv"))
 
         #: get demographic + static dfs
         df_demographics = pd.read_csv(os.path.join(load_folder_path, file, "demo.csv"))
@@ -137,7 +134,7 @@ def main():
         
         #: combine with demographic
         df_static = pd.concat([df_demographics, df_static], axis=1)
-        df_static.insert(0, "patientid", idx)
+        df_static.insert(0, "patientid", patientid)
 
         #: save in constant list
         constant_list.append(df_static)
@@ -146,7 +143,7 @@ def main():
     #: save final constants df
     print("Saving constants df")
     df_constants = pd.concat(constant_list, axis=0, ignore_index=True)
-    df_constants.to_csv(os.path.join(save_folder_path_constant, "constants.csv"))
+    df_constants.to_csv(os.path.join(save_folder_path_constant, "constants.csv"), index=False)
 
     
     
