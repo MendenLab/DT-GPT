@@ -380,6 +380,10 @@ class DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC(DataFrameConverte
         assert is_datetime(true_future_events_input["date"]), "DataFrameConverter: Date needs to be a datetime object!"
         assert is_datetime(true_events_output["date"]), "DataFrameConverter: Date needs to be a datetime object!"
 
+        # Track the latest timestamp before filtering rows so hour offsets stay aligned even if
+        # the last row is empty (e.g. contains only date/patient identifiers).
+        last_input_timestamp_before_filtering = true_events_input["date"].max()
+
         # Drop completely empty rows from input dataframe, if all empty except patientid and patient_sample_index and date
         true_events_input = true_events_input.dropna(axis=0, how='all', subset=true_events_input.columns.difference(["patientid", "patient_sample_index", "date"]))
         true_events_output = true_events_output.dropna(axis=0, how='all', subset=true_events_output.columns.difference(["patientid", "patient_sample_index", "date"]))
@@ -402,7 +406,6 @@ class DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC(DataFrameConverte
 
         #: sort by date
         true_events_input = true_events_input.sort_values(by=['date'])
-        true_events_input_original = true_events_input.copy()
         true_future_events_input = true_future_events_input.sort_values(by=['date'])
         true_events_output = true_events_output.sort_values(by=['date'])
 
@@ -422,11 +425,10 @@ class DTGPTDataFrameConverterTemplateTextBasicDescriptionMIMIC(DataFrameConverte
 
 
         # : get difference in days from output seq to last of the input
-        input_days = true_events_input["date"].tolist()
         output_days = true_events_output["date"].tolist()
-        last_day_input = true_events_input["date"].tolist()[-1]
+        last_day_input = last_input_timestamp_before_filtering if pd.notna(last_input_timestamp_before_filtering) else true_events_input["date"].tolist()[-1]
         first_day_output = true_events_output["date"].tolist()[0]
-        diff_input_output_days = (first_day_output - last_day_input).seconds // 3600
+        diff_input_output_days = int((first_day_output - last_day_input).total_seconds() // 3600)
 
         # : convert dates into relative days from previous for columns
         true_events_input['date'] = true_events_input['date'].diff().dt.seconds // 3600

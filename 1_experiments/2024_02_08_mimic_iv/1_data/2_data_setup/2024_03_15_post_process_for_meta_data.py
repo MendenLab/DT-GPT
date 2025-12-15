@@ -57,20 +57,15 @@ def generate_column_mapping():
         mapping[col_name]["target"] = col_name in target_columns
         
 
-        
-
-    col_groups = list(set([mapping[col_name]["variable_group"] for col_name in mapping.keys()]))
-
-
     # save as json
     with open('/home/makaron1/uc2_nsclc/2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/column_mapping.json', 'w') as f:
         json.dump(mapping, f, indent=4)
 
 
-    #: add column path_to_events_file in constants
+    #: add column path_to_events_file in constants without altering patient indexing
     constants = pd.read_csv("/home/makaron1/uc2_nsclc/2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/constants.csv")
-    constants["patientid"] = constants["patientid"].astype(str)
-    constants["path_to_events_file"] = constants["patientid"] + "_events.csv"
+    constants = constants.loc[:, ~constants.columns.str.contains(r"^Unnamed")]
+    constants["path_to_events_file"] = constants["patientid"].astype(str) + "_events.csv"
     constants.to_csv("/home/makaron1/uc2_nsclc/2_experiments/2024_02_08_mimic_iv/1_data/0_final_data/constants.csv")
 
     print("Finished with generate_column_mapping")
